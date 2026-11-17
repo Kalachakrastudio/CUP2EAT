@@ -1,85 +1,81 @@
 (() => {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const cup = document.getElementById('travellingCup');
+ const cupImg = document.getElementById('travellingCupImage');
+ const scenes = [...document.querySelectorAll('.scene')];
+ const header = document.getElementById('header');
+ const progress = document.getElementById('progress');
+ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const mobile = () => matchMedia('(max-width:650px)').matches;
 
-  // Reveal-on-scroll with a graceful fallback.
-  const revealItems = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
-    revealItems.forEach(item => observer.observe(item));
-  } else {
-    revealItems.forEach(item => item.classList.add('is-visible'));
-  }
+ // Reveal content when it enters the viewport.
+ const revealEls = document.querySelectorAll('.reveal');
+ if ('IntersectionObserver' in window && !reduced) {
+   const io = new IntersectionObserver((entries, obs) => {
+     entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+   }, {threshold:.12, rootMargin:'0px 0px -35px 0px'});
+   revealEls.forEach(el => io.observe(el));
+ } else revealEls.forEach(el => el.classList.add('visible'));
 
-  // Sticky header state + top progress indicator.
-  const header = document.querySelector('.site-header');
-  const progress = document.getElementById('scrollProgress');
-  let ticking = false;
-  const updateScroll = () => {
-    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    const percent = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-    progress.style.width = `${percent}%`;
-    header.classList.toggle('scrolled', window.scrollY > 24);
-    ticking = false;
-  };
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateScroll);
-      ticking = true;
-    }
-  }, { passive: true });
-  updateScroll();
+ // The same hero cup travels between scene anchor points.
+ // Each scene supplies a target X/Y, size and rotation in data attributes.
+ let ticking = false;
+ const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+ const smooth = t=>t*t*(3-2*t);
+ const readTarget = scene => {
+   const r = scene.getBoundingClientRect();
+   const vh = innerHeight, vw = innerWidth;
+   const progressIn = clamp((vh-r.top)/(vh+r.height),0,1);
+   const x = Number(scene.dataset.cupX || 70)/100*vw;
+   let y = Number(scene.dataset.cupY || 50)/100*vh;
+   let size = scene.dataset.cupSize || 'min(40vw,500px)';
+   let rotate = Number(scene.dataset.cupRotate || 0);
+   if (mobile()) {
+     // On phones, keep the cup below the section heading and within the viewport.
+     y = clamp(y, vh*.56, vh*.78);
+     size = 'min(76vw,340px)';
+   }
+   return {x,y,size,rotate,progressIn};
+ };
+ const update = () => {
+   const vh = innerHeight, vw = innerWidth;
+   const activeIndex = Math.max(0, scenes.findIndex(s => {
+     const r=s.getBoundingClientRect(); return r.top <= vh*.58 && r.bottom >= vh*.42;
+   }));
+   const current = scenes[activeIndex] || scenes[0];
+   const next = scenes[Math.min(activeIndex+1,scenes.length-1)];
+   const a = readTarget(current), b = readTarget(next);
+   const rect = current.getBoundingClientRect();
+   const blend = smooth(clamp((vh*.58-rect.top)/(rect.height*.72),0,1));
+   const x = a.x + (b.x-a.x)*blend;
+   const y = a.y + (b.y-a.y)*blend;
+   const rot = a.rotate + (b.rotate-a.rotate)*blend;
+   const size = mobile() ? 'min(76vw,340px)' : a.size;
+   const w = mobile() ? Math.min(vw*.76,340) : Math.min(vw*.44,560);
+   const h = w;
+   cup.style.width = `${w}px`; cup.style.height = `${h}px`;
+   cup.style.transform = `translate3d(${x-w/2}px,${y-h/2}px,0) rotate(${rot}deg)`;
+   // Scale the cup shell subtly as it approaches the section's target.
+   const shell = cup.querySelector('.cup-image-shell');
+   shell.style.transform = `scale(${1 - .045*Math.sin(blend*Math.PI)})`;
+   const total = document.documentElement.scrollHeight-innerHeight;
+   progress.style.width = `${total>0 ? scrollY/total*100 : 0}%`;
+   header.classList.toggle('compact',scrollY>25);
+   ticking=false;
+ };
+ const requestUpdate=()=>{if(!ticking){requestAnimationFrame(update);ticking=true;}};
+ addEventListener('scroll',requestUpdate,{passive:true});
+ addEventListener('resize',requestUpdate);
+ update();
 
-  // Mobile navigation.
-  const menuButton = document.getElementById('menuButton');
-  const mainNav = document.getElementById('mainNav');
-  menuButton.addEventListener('click', () => {
-    const open = mainNav.classList.toggle('open');
-    menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-  });
-  mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    mainNav.classList.remove('open');
-    menuButton.setAttribute('aria-expanded', 'false');
-  }));
+ // Mobile nav.
+ const menu=document.getElementById('menu'), nav=document.getElementById('nav');
+ menu.addEventListener('click',()=>nav.classList.toggle('open'));
+ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
-  // Subtle pointer parallax for the hero image.
-  const stage = document.getElementById('heroStage');
-  const photo = document.querySelector('.hero-photo-wrap');
-  if (!reduceMotion && window.matchMedia('(pointer:fine)').matches) {
-    stage.addEventListener('pointermove', event => {
-      const rect = stage.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      const y = (event.clientY - rect.top) / rect.height - .5;
-      photo.style.marginLeft = `${x * 12}px`;
-      photo.style.marginTop = `${y * 12}px`;
-    });
-    stage.addEventListener('pointerleave', () => {
-      photo.style.marginLeft = '0';
-      photo.style.marginTop = '0';
-    });
-  }
-
-  // If a third-party photo host blocks an image, replace it with a known fallback
-  // instead of leaving a broken-image icon.
-  const fallbacks = [
-    'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=85',
-    'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1000&q=85'
-  ];
-  document.querySelectorAll('img').forEach((img, index) => {
-    img.addEventListener('error', () => {
-      if (img.dataset.fallbackTried) return;
-      img.dataset.fallbackTried = 'true';
-      img.src = fallbacks[index % fallbacks.length];
-      img.classList.add('fallback-photo');
-    }, { once: true });
-  });
-
-  document.getElementById('year').textContent = new Date().getFullYear();
+ // A clean fallback if the chosen photo host blocks a request.
+ const fallback='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=85';
+ document.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{
+   if(img.dataset.fallback)return; img.dataset.fallback='1'; img.src=fallback;
+ }));
+ document.getElementById('year').textContent=new Date().getFullYear();
 })();
