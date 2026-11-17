@@ -1,175 +1,130 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3efe8">
-  <title>CUP2EAT — Eat Your Drink</title>
-  <meta name="description" content="A little cup. A lot of delight. Discover the edible cup experience by CUP2EAT.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script>document.documentElement.classList.add('js-enabled');</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F5F0E8">
+<title>CUP2EAT — A Better Kind of Sip</title>
+<meta name="description" content="CUP2EAT edible cups — sip, savour, eat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <div class="announcement">A NEW WAY TO ENJOY YOUR EVERYDAY <span>✳</span> SIP · SAVOUR · EAT</div>
-  <header class="site-header" id="top">
-    <a class="wordmark" href="#top" aria-label="CUP2EAT home">CUP<span>2</span>EAT<sup>®</sup></a>
-    <nav class="main-nav" id="mainNav">
-      <a href="#experience">The experience</a>
-      <a href="#collection">Our cups</a>
-      <a href="#difference">The difference</a>
-      <a href="#partners">For business</a>
-    </nav>
-    <a class="header-cta" href="#contact">Let's talk <span>↗</span></a>
-    <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false"><i></i><i></i></button>
-  </header>
+<div class="topline">A NEW WAY TO ENJOY YOUR EVERYDAY <span>✳</span> SIP · SAVOUR · EAT</div>
+<header class="header" id="header">
+  <a class="logo" href="#home">CUP<span>2</span>EAT<sup>®</sup></a>
+  <nav id="nav"><a href="#story">The idea</a><a href="#flavours">Flavours</a><a href="#ritual">The ritual</a><a href="#business">For business</a></nav>
+  <a class="nav-cta" href="#contact">Let's talk <b>↗</b></a>
+  <button class="menu" id="menu" aria-label="Toggle menu"><i></i><i></i></button>
+</header>
 
-  <main>
-    <section class="hero" id="experience">
-      <div class="hero-copy">
-        <p class="eyebrow hero-in" style="--d:0ms">THE CUP THAT COMPLETES THE DRINK</p>
-        <h1 class="hero-in" style="--d:120ms">A sip of<br><em>something</em><br>different.</h1>
-        <p class="hero-description hero-in" style="--d:240ms">Meet the cup that turns your favourite drink into a delicious little experience. Sip it slowly. Savour the moment. Then eat the cup.</p>
-        <div class="hero-buttons hero-in" style="--d:360ms">
-          <a class="btn btn-dark" href="#collection">Discover the cups <span>↗</span></a>
-          <a class="text-link" href="#how">How it works <span>↓</span></a>
-        </div>
-        <div class="hero-footnote hero-in" style="--d:480ms"><span class="footnote-line"></span> GOOD TO THE VERY LAST BITE</div>
-      </div>
-      <div class="hero-stage" id="heroStage">
-        <div class="hero-halo"></div>
-        <div class="hero-ring ring-one"></div>
-        <div class="hero-ring ring-two"></div>
-        <div class="hero-photo-wrap">
-          <img class="hero-photo" src="https://thetablegourmet.com/cdn/shop/files/waf618EWa0J-SL._SL1200.jpg?v=1777915876&amp;width=1946" alt="Edible biscuit cups filled with coffee and cream" fetchpriority="high">
-        </div>
-        <div class="floating-note note-top"><span>01 /</span> NOT JUST A CUP</div>
-        <div class="floating-note note-bottom">THE LAST BITE<br><b>IS THE BEST PART.</b></div>
-        <div class="hero-orbit-dot"></div>
-      </div>
-      <div class="hero-index"><span>01</span><span class="index-rule"></span><span>04</span></div>
-    </section>
+<!-- One persistent cup travels through the story. Its position and rotation are driven by scroll. -->
+<div class="travelling-cup" id="travellingCup" aria-hidden="true">
+  <div class="cup-aura"></div>
+  <div class="cup-image-shell">
+    <img id="travellingCupImage" src="https://thetablegourmet.com/cdn/shop/files/waf618EWa0J-SL._SL1200.jpg?v=1777915876&amp;width=1946" alt="">
+  </div>
+  <span class="cup-stamp">THE EDIBLE CUP</span>
+</div>
 
-    <div class="ticker" aria-label="CUP2EAT tagline">
-      <div class="ticker-track">
-        <span>DRINK THE MOMENT</span><b>✳</b><span>EAT THE CUP</span><b>✳</b><span>LEAVE NOTHING BEHIND</span><b>✳</b>
-        <span>DRINK THE MOMENT</span><b>✳</b><span>EAT THE CUP</span><b>✳</b><span>LEAVE NOTHING BEHIND</span><b>✳</b>
-      </div>
+<main>
+<section class="hero scene" id="home" data-cup-x="73" data-cup-y="53" data-cup-size="min(44vw,560px)" data-cup-rotate="-8">
+  <div class="hero-copy">
+    <p class="eyebrow enter">NOT JUST A CUP. A WHOLE EXPERIENCE.</p>
+    <h1 class="enter delay-1">A sip of<br><em>something</em><br>different.</h1>
+    <p class="intro enter delay-2">Meet the cup that turns your favourite drink into a delicious little experience. Sip it slowly. Savour the moment. Then eat the cup.</p>
+    <div class="hero-actions enter delay-3"><a class="button" href="#flavours">Discover the cups <span>↗</span></a><a class="underlink" href="#story">Scroll to explore ↓</a></div>
+    <div class="hero-caption enter delay-3"><span></span> GOOD TO THE VERY LAST BITE</div>
+  </div>
+  <div class="hero-empty" aria-hidden="true"></div>
+  <div class="hero-side-note">A LITTLE CUP.<br><b>A LOT TO LOVE.</b></div>
+  <div class="hero-counter">01 <i></i> 04</div>
+</section>
+
+<div class="marquee"><div class="marquee-track"><span>DRINK THE MOMENT</span> ✳ <span>EAT THE CUP</span> ✳ <span>LEAVE NOTHING BEHIND</span> ✳ <span>DRINK THE MOMENT</span> ✳ <span>EAT THE CUP</span> ✳ <span>LEAVE NOTHING BEHIND</span> ✳</div></div>
+
+<section class="story scene" id="story" data-cup-x="76" data-cup-y="52" data-cup-size="min(36vw,440px)" data-cup-rotate="18">
+  <div class="story-copy">
+    <p class="eyebrow reveal">01 / THE CUP2EAT IDEA</p>
+    <h2 class="reveal">What if the cup<br>was <em>part of the treat?</em></h2>
+    <p class="body-copy reveal">A familiar ritual, reimagined. CUP2EAT brings together the joy of your favourite beverage and the simple pleasure of a crisp, edible cup.</p>
+    <div class="mini-line reveal"><span>01</span> A NEW TAKE ON THE EVERYDAY</div>
+  </div>
+  <div class="story-visual-space"></div>
+  <div class="story-quote reveal">“The best part<br>comes <em>last.</em>”</div>
+</section>
+
+<section class="flavours scene" id="flavours" data-cup-x="24" data-cup-y="53" data-cup-size="min(34vw,420px)" data-cup-rotate="-22">
+  <div class="section-head">
+    <div><p class="eyebrow reveal">02 / THE SIGNATURE COLLECTION</p><h2 class="reveal">Choose your<br><em>kind of crunch.</em></h2></div>
+    <p class="section-aside reveal">Three delicious personalities.<br>One very good reason to finish your cup.</p>
+  </div>
+  <div class="flavour-grid">
+    <article class="flavour-card reveal">
+      <div class="flavour-photo"><img src="https://cpimg.tistatic.com/7558178/b/1/edible-dark-chocolate-biscuit-tea-cup.jpg" alt="Chocolate edible biscuit cup" loading="lazy"><span>01 — THE RICH ONE</span></div>
+      <div class="flavour-info"><div><h3>Chocolate</h3><p>Deep cocoa. Crisp finish.</p></div><b>↗</b></div>
+    </article>
+    <article class="flavour-card reveal delay-card">
+      <div class="flavour-photo"><img src="https://thetablegourmet.com/cdn/shop/files/waf618EWa0J-SL._SL1200.jpg?v=1777915876&amp;width=1200" alt="Golden edible cup with coffee" loading="lazy"><span>02 — THE CLASSIC</span></div>
+      <div class="flavour-info"><div><h3>Classic</h3><p>Simple, crisp and delightful.</p></div><b>↗</b></div>
+    </article>
+    <article class="flavour-card reveal delay-card-2">
+      <div class="flavour-photo"><img src="https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/ExtraLarge/20220806083955-ed88a996-f9a1-4eeb-bda0-f241096567af.jpg" alt="Flavoured edible cup" loading="lazy"><span>03 — THE COMFORT</span></div>
+      <div class="flavour-info"><div><h3>Elaichi</h3><p>A chai-time favourite.</p></div><b>↗</b></div>
+    </article>
+  </div>
+  <p class="photo-note">Product photographs are illustrative references; replace with approved CUP2EAT product photography.</p>
+</section>
+
+<section class="difference scene" id="difference" data-cup-x="76" data-cup-y="51" data-cup-size="min(38vw,470px)" data-cup-rotate="32">
+  <div class="difference-space"></div>
+  <div class="difference-copy">
+    <p class="eyebrow reveal">03 / A BETTER KIND OF COFFEE BREAK</p>
+    <h2 class="reveal">Not just served.<br><em>Remembered.</em></h2>
+    <p class="body-copy reveal">Why should a good drink end with an empty disposable cup? Make the cup part of the moment — a little surprise your guests can enjoy right to the last bite.</p>
+    <div class="benefits">
+      <div class="benefit reveal"><span>01</span><div><b>Made to be enjoyed</b><small>A cup with a delicious second act.</small></div></div>
+      <div class="benefit reveal"><span>02</span><div><b>A talking-point serve</b><small>Give every guest something to remember.</small></div></div>
+      <div class="benefit reveal"><span>03</span><div><b>Less to throw away</b><small>A thoughtful alternative to a throwaway moment.</small></div></div>
     </div>
+  </div>
+</section>
 
-    <section class="statement section-pad">
-      <div class="section-label reveal"><span>01</span> A SMALL CHANGE. A BIG DELIGHT.</div>
-      <h2 class="statement-title reveal">What if the cup<br>was <em>part of the treat?</em></h2>
-      <p class="statement-copy reveal">A familiar ritual, reimagined. CUP2EAT brings together the joy of your favourite beverage and the simple pleasure of a crisp, edible cup.</p>
-      <div class="statement-bottom reveal"><span>SCROLL TO TASTE THE IDEA</span><span class="down-arrow">↓</span></div>
-    </section>
+<section class="ritual scene" id="ritual" data-cup-x="26" data-cup-y="50" data-cup-size="min(34vw,410px)" data-cup-rotate="-42">
+  <div class="ritual-heading"><p class="eyebrow reveal">04 / THE LITTLE RITUAL</p><h2 class="reveal">Four steps.<br><em>One happy ending.</em></h2><p class="reveal">It's a whole new way to enjoy your everyday.</p></div>
+  <div class="steps">
+    <article class="step reveal"><span>01</span><div>✳</div><h3>Pick your cup</h3><p>Choose the flavour that fits your mood.</p></article>
+    <article class="step reveal"><span>02</span><div>↘</div><h3>Pour it in</h3><p>Fill it with your favourite drink.</p></article>
+    <article class="step reveal"><span>03</span><div>〰</div><h3>Savour the sip</h3><p>Take a moment. Enjoy every drop.</p></article>
+    <article class="step reveal"><span>04</span><div>♡</div><h3>Eat the cup</h3><p>Finish with a delicious crunch.</p></article>
+  </div>
+</section>
 
-    <section class="collection section-pad" id="collection">
-      <div class="section-heading">
-        <div>
-          <div class="section-label reveal"><span>02</span> THE SIGNATURE COLLECTION</div>
-          <h2 class="reveal">Choose your<br><em>kind of crunch.</em></h2>
-        </div>
-        <p class="heading-note reveal">Three delicious personalities.<br>One very good reason to finish your cup.</p>
-      </div>
-      <div class="product-grid">
-        <article class="product-card reveal">
-          <div class="product-image image-chocolate">
-            <span class="product-index">01 — THE RICH ONE</span>
-            <img src="https://cpimg.tistatic.com/7558178/b/1/edible-dark-chocolate-biscuit-tea-cup.jpg" alt="Chocolate edible biscuit cup filled with tea" loading="lazy">
-            <span class="image-caption">A LITTLE MORE DECADENT</span>
-          </div>
-          <div class="product-meta"><div><h3>Chocolate</h3><p>Deep cocoa. Crisp finish.</p></div><span class="product-arrow">↗</span></div>
-        </article>
-        <article class="product-card reveal" style="--reveal-delay:140ms">
-          <div class="product-image image-vanilla">
-            <span class="product-index">02 — THE CLASSIC</span>
-            <img src="https://thetablegourmet.com/cdn/shop/files/waf618EWa0J-SL._SL1200.jpg?v=1777915876&amp;width=1946" alt="Golden edible biscuit cup with coffee" loading="lazy">
-            <span class="image-caption">SIMPLE. SMOOTH. LOVELY.</span>
-          </div>
-          <div class="product-meta"><div><h3>Vanilla</h3><p>Delicate sweetness. Easy charm.</p></div><span class="product-arrow">↗</span></div>
-        </article>
-        <article class="product-card reveal" style="--reveal-delay:280ms">
-          <div class="product-image image-elaichi">
-            <span class="product-index">03 — THE COMFORT</span>
-            <img src="https://d91ztqmtx7u1k.cloudfront.net/ClientContent/Images/ExtraLarge/20220806083955-ed88a996-f9a1-4eeb-bda0-f241096567af.jpg" alt="Elaichi flavoured edible tea cup" loading="lazy">
-            <span class="image-caption">A FAMILIAR FAVOURITE</span>
-          </div>
-          <div class="product-meta"><div><h3>Elaichi</h3><p>Aromatic cardamom. A chai-time twist.</p></div><span class="product-arrow">↗</span></div>
-        </article>
-      </div>
-      <p class="collection-disclaimer">Product imagery is for concept presentation; replace with CUP2EAT's approved product photographs before publishing.</p>
-    </section>
+<section class="business scene" id="business" data-cup-x="74" data-cup-y="50" data-cup-size="min(37vw,450px)" data-cup-rotate="52">
+  <div class="business-image-space"></div>
+  <div class="business-copy">
+    <p class="eyebrow reveal">05 / FOR CAFÉS, HOTELS & EXPERIENCES</p>
+    <h2 class="reveal">Make your next<br>serve <em>unforgettable.</em></h2>
+    <p class="body-copy reveal">Give customers a reason to pause, smile and share. Bring the CUP2EAT experience to your menu, counter or next celebration.</p>
+    <div class="tags reveal"><span>CAFÉS & COFFEE SHOPS</span><span>RESTAURANTS & HOTELS</span><span>EVENTS & CATERING</span></div>
+    <a class="button reveal" href="#contact">Explore a partnership <span>↗</span></a>
+  </div>
+</section>
 
-    <section class="feature-story" id="difference">
-      <div class="feature-image reveal">
-        <img src="https://ediblecups.ecosphere.co.in/landing%20page%20tea%20cup/edible%20biscuts%20cups" alt="Edible biscuit cups served with hot beverages" loading="lazy">
-        <div class="image-side-note">A BETTER KIND<br>OF COFFEE BREAK.</div>
-      </div>
-      <div class="feature-copy">
-        <div class="section-label reveal"><span>03</span> THE CUP2EAT IDEA</div>
-        <h2 class="reveal">The best part<br>comes <em>last.</em></h2>
-        <p class="reveal">Why should a good drink end with an empty disposable cup? We believe the little things can make a moment memorable. So we made the cup part of the experience.</p>
-        <div class="feature-points">
-          <div class="feature-point reveal"><span>01</span><div><b>Made to be enjoyed</b><small>A cup with a delicious second act.</small></div></div>
-          <div class="feature-point reveal"><span>02</span><div><b>A talking-point serve</b><small>Give every guest something to remember.</small></div></div>
-          <div class="feature-point reveal"><span>03</span><div><b>Less to throw away</b><small>A thoughtful alternative to a throwaway moment.</small></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ritual section-pad" id="how">
-      <div class="ritual-head">
-        <div class="section-label reveal"><span>04</span> THE LITTLE RITUAL</div>
-        <h2 class="reveal">Four steps.<br><em>One happy ending.</em></h2>
-        <p class="reveal">It's a whole new way to enjoy your everyday.</p>
-      </div>
-      <div class="ritual-steps">
-        <article class="ritual-step reveal"><span class="step-number">01</span><div class="step-symbol">✳</div><h3>Pick your cup</h3><p>Choose the flavour that fits your mood.</p></article>
-        <article class="ritual-step reveal" style="--reveal-delay:120ms"><span class="step-number">02</span><div class="step-symbol">↘</div><h3>Pour it in</h3><p>Fill it with your favourite drink.</p></article>
-        <article class="ritual-step reveal" style="--reveal-delay:240ms"><span class="step-number">03</span><div class="step-symbol">〰</div><h3>Savour the sip</h3><p>Take a moment. Enjoy every drop.</p></article>
-        <article class="ritual-step reveal" style="--reveal-delay:360ms"><span class="step-number">04</span><div class="step-symbol">♡</div><h3>Eat the cup</h3><p>Finish with a delicious crunch.</p></article>
-      </div>
-    </section>
-
-    <section class="partner-section" id="partners">
-      <div class="partner-photo reveal">
-        <img src="https://www.twiice.co.nz/cdn/shop/files/twiice-productsquares-chocolatestyled1.jpg?v=1702195400" alt="Edible cup served as a premium coffee experience" loading="lazy">
-      </div>
-      <div class="partner-copy">
-        <div class="section-label reveal"><span>05</span> FOR CAFÉS, HOTELS & EXPERIENCES</div>
-        <h2 class="reveal">Make your<br>next serve<br><em>unforgettable.</em></h2>
-        <p class="reveal">Give customers a reason to pause, smile and share. Bring the CUP2EAT experience to your menu, counter or next celebration.</p>
-        <div class="partner-tags reveal"><span>CAFÉS & COFFEE SHOPS</span><span>RESTAURANTS & HOTELS</span><span>EVENTS & CATERING</span><span>DESSERT BARS</span></div>
-        <a href="#contact" class="btn btn-light reveal">Explore a partnership <span>↗</span></a>
-      </div>
-    </section>
-
-    <section class="closing section-pad">
-      <div class="closing-mark reveal">“</div>
-      <h2 class="reveal">Don't just serve<br>a drink. Serve <em>a story.</em></h2>
-      <p class="reveal">CUP2EAT — EAT YOUR DRINK.</p>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="contact-inner">
-        <div class="section-label reveal"><span>06</span> LET'S MAKE SOMETHING DELICIOUS</div>
-        <h2 class="reveal">Ready for a<br><em>different kind</em><br>of sip?</h2>
-        <p class="reveal">Bring the edible cup experience to your business.</p>
-        <a class="btn btn-gold reveal" href="https://wa.me/919818192575?text=Hi%20CUP2EAT%2C%20I%27d%20like%20to%20know%20more%20about%20your%20edible%20cups." target="_blank" rel="noopener">Talk to CUP2EAT <span>↗</span></a>
-      </div>
-      <div class="contact-orb"></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <a class="wordmark footer-logo" href="#top">CUP<span>2</span>EAT<sup>®</sup></a>
-    <span>GOOD TO THE VERY LAST BITE.</span>
-    <span>© <span id="year"></span> CUP2EAT · CONCEPT PREVIEW</span>
-  </footer>
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <script src="script.js"></script>
+<section class="finale scene" id="contact" data-cup-x="50" data-cup-y="39" data-cup-size="min(29vw,350px)" data-cup-rotate="360">
+  <div class="finale-content">
+    <p class="eyebrow reveal">THE LAST BITE IS JUST THE BEGINNING</p>
+    <h2 class="reveal">Don't just serve<br>a drink. Serve <em>a story.</em></h2>
+    <p class="reveal">CUP2EAT — EAT YOUR DRINK.</p>
+    <a class="button reveal" href="https://wa.me/?text=Hi%20CUP2EAT%2C%20I%27d%20like%20to%20know%20more%20about%20your%20edible%20cups." target="_blank" rel="noopener">Talk to CUP2EAT <span>↗</span></a>
+  </div>
+</section>
+</main>
+<footer><a class="logo" href="#home">CUP<span>2</span>EAT<sup>®</sup></a><span>GOOD TO THE VERY LAST BITE.</span><small>© <span id="year"></span> CUP2EAT · CONCEPT PREVIEW</small></footer>
+<div class="progress" id="progress"></div>
+<script src="script.js"></script>
 </body>
 </html>
